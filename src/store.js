@@ -46,7 +46,7 @@ const actions = {
 }
 
 const getters = {
-  evenOrOdd (state) {
+  evenOrOdd2 (state) {
     return state.count%2===0 ? '偶数' : '奇数'
   }
 }

@@ -1,9 +1,14 @@
 import Vue from 'vue'
-import app from './app.vue'
+import counter from './components/counter.vue'
 import store from './store'
 
 new Vue({
   el: '#app',
-  render: h => h(app),
-  store  // 所有组件都多个一个属性: $store
+  render: h => h(counter),  // h: 根据组件生成对应标签的函数
+  // components: {counter},
+  // template: '<counter />'
+ /* render: function (createElement) {
+    return createElement(counter)
+  }*/
+  store
 })

@@ -1,6 +1,6 @@
 <template>
   <div>
-    clicked: {{count}} times, count is {{evenOrOdd}}
+    ----clicked: {{count}} times, count is {{evenOrOdd}}
     <button @click="increment">increment</button>
     <button @click="decrement">decrement</button>
     <button @click="incrementIfOdd">increment if odd</button>
@@ -10,37 +10,35 @@
 
 <script>
   export default {
-    data () {
-      return {
-        count: 0
-      }
+
+    mounted () {
+      console.log('mounted()', this.$store)
     },
 
     computed: {
+      count () {
+        return this.$store.state.count
+      },
       evenOrOdd () {
-        return this.count%2===0 ? '偶数' : '奇数'
+        return this.$store.getters.evenOrOdd
       }
     },
 
     methods: {
       increment () {
-        this.count++
+        this.$store.dispatch('increment')
       },
 
       decrement () {
-        this.count--
+        this.$store.dispatch('decrement')
       },
 
       incrementIfOdd () {
-        if(this.count%2===1) {
-          this.count++
-        }
+        this.$store.dispatch('incrementIfOdd')
       },
 
       incrementAsync () {
-        setTimeout(() => {
-          this.count++
-        }, 1000)
+        this.$store.dispatch('incrementAsync')
       }
     }
 

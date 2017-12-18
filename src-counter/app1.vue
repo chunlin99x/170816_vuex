@@ -11,7 +11,6 @@
 <script>
   export default {
 
-
     computed: {
       oddOrEven () {
         return this.$store.getters.oddOrEven

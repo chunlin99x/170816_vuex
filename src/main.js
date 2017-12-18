@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import counter from './components/counter.vue'
+import store from './store'
 
 new Vue({
   el: '#app',
@@ -9,4 +10,5 @@ new Vue({
  /* render: function (createElement) {
     return createElement(counter)
   }*/
+  store
 })

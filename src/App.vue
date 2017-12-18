@@ -14,6 +14,11 @@
   import Footer from './components/Footer.vue'
 
   export default {
+
+    mounted () {
+      this.$store.dispatch('readSavedTodos')
+    },
+
     components: {
       'todo-header': Header,
       'todo-main': Main,

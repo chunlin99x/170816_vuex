@@ -13,40 +13,24 @@
 </template>
 
 <script>
+  import {mapState, mapGetters, mapActions} from 'vuex'
   export default {
-    props: {
-      todos: Array,
-      clearCompletedTodos: Function,
-      selectAll: Function
-    },
 
     computed: {
-      completeSize () {
-        // 根据数组进行统计
-        /*
-        let size = 0
-        this.todos.forEach(todo => {
-          if(todo.completed) {
-            size++
-          }
-        })
-        return size
-        */
-        return this.todos.reduce((preTotal, todo) => {
-          return preTotal + (todo.completed ? 1 : 0)
-        }, 0)
-
-        // return this.todos.filter(todo => todo.completed).length
-      },
+      ...mapState(['todos']),
+      ...mapGetters(['completeSize']),
       isCheck: {
         get () {
-          return this.todos.length===this.completeSize &&  this.completeSize>0 // 这里不能调用completeSize()
+          return  this.$store.getters.isAllSelect
         },
         set (value) {
-          this.selectAll(value)
+          this.$store.dispatch('selectAll', value)
         }
-
       }
+    },
+
+    methods: {
+      ...mapActions(['clearCompletedTodos'])
     }
   }
 </script>

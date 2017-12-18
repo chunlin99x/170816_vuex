@@ -1,3 +1,4 @@
+import storageUtil from '../util/storageUtil'
 export default {
 
   addTodo ({commit}, todo) {
@@ -6,5 +7,22 @@ export default {
 
   removeTodo ({commit}, index) {
     commit('REMOVE_TODO', {index})
+  },
+
+  selectAll ({commit}, isCheck) {
+    commit('SELECT_ALL', {isCheck})
+  },
+
+  clearCompletedTodos ({commit}) {
+    commit('CLEAR_COMPLETED_TODOS')
+  },
+
+  readSavedTodos ({commit} ) {
+    // 模拟异步读取数据
+    setTimeout(() => {
+      const todos = storageUtil.readTodos()
+      commit('RECEIVE_TODOS', {todos})
+    }, 1000)
+
   }
 }

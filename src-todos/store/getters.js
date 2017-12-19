@@ -1,19 +1,13 @@
 export default {
-  todos (state) {
-    return state.todos
-  },
-
-  totalSize (state) {
-    return state.todos.length
-  },
-
   completeSize (state) {
     return state.todos.reduce((preTotal, todo) => {
-      return preTotal + (todo.complete ? 1 : 0)
+      return preTotal + (todo.completed ? 1 : 0)
     }, 0)
   },
 
-  isAllComplete (state, getters) {
-    return  getters.totalSize===getters.completeSize && getters.totalSize>0
+  isAllSelect (state, getters) {
+    return state.todos.length===getters.completeSize &&  getters.completeSize>0
   }
+
+
 }

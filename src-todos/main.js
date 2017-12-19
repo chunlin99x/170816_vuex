@@ -1,10 +1,9 @@
 import Vue from 'vue'
-import App from './components/app'
+import App from './App.vue'
 import store from './store'
 
-import './base.css'
+import './base.css' // 引入的样式对所有组件都可见
 
-/* eslint-disable no-new */
 new Vue({
   el: '#app',
   render: h => h(App),

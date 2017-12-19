@@ -1,28 +1,29 @@
 import storageUtil from '../util/storageUtil'
-import {RECEIVE_TODOS, ADD_TODO, REMOVE_TODO, DELETE_DONE, UPDATE_ALL_TODOS} from './types'
-
+import {ADD_TODO} from './mutation-types'
 export default {
-  readTodo ({commit}) {
-    setTimeout(() => {
-      const todos = storageUtil.fetch()
-      // 提交commit触发mutation调用
-      commit(RECEIVE_TODOS, {todos})
-    }, 1000)
-  },
 
   addTodo ({commit}, todo) {
-    commit(ADD_TODO, {todo})
+    commit(ADD_TODO, {todo})   // action提交mutation时, 如果需要携带数据, 最好传包含数据的对象
   },
 
   removeTodo ({commit}, index) {
-    commit(REMOVE_TODO, {index})
+    commit('REMOVE_TODO', {index})
   },
 
-  deleteDone ({commit}) {
-    commit(DELETE_DONE)
+  selectAll ({commit}, isCheck) {
+    commit('SELECT_ALL', {isCheck})
   },
 
-  updateAllTodos ({commit}, isCheck) {
-    commit(UPDATE_ALL_TODOS, {isCheck})
+  clearCompletedTodos ({commit}) {
+    commit('CLEAR_COMPLETED_TODOS')
+  },
+
+  readSavedTodos ({commit} ) {
+    // 模拟异步读取数据
+    setTimeout(() => {
+      const todos = storageUtil.readTodos()
+      commit('RECEIVE_TODOS', {todos})
+    }, 1000)
+
   }
 }
